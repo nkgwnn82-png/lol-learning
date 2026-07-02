@@ -1,0 +1,105 @@
+[
+  {
+    "id": "lillia",
+    "name": "リリア",
+    "title": "はにかみ屋の花",
+    "role": ["Jungle"],
+    "damage": "AP",
+    "difficulty": 3,
+    "playstyle": [
+      "Kiting",
+      "Spacing",
+      "Teamfight"
+    ],
+    "favorite": true,
+    "understanding": 0,
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Lillia_0.jpg"
+  },
+  {
+    "id": "rumble",
+    "name": "ランブル",
+    "title": "メカに乗った脅威",
+    "role": ["Top"],
+    "damage": "AP",
+    "difficulty": 3,
+    "playstyle": [
+      "Zone Control",
+      "Teamfight"
+    ],
+    "favorite": true,
+    "understanding": 0,
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Rumble_0.jpg"
+  },
+  {
+    "id": "taliyah",
+    "name": "タリヤ",
+    "title": "石織り",
+    "role": [
+      "Mid",
+      "Jungle"
+    ],
+    "damage": "AP",
+    "difficulty": 4,
+    "playstyle": [
+      "Roam",
+      "Burst",
+      "Control"
+    ],
+    "favorite": true,
+    "understanding": 0,
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Taliyah_0.jpg"
+  },
+  {
+    "id": "singed",
+    "name": "シンジド",
+    "title": "狂気のケミスト",
+    "role": [
+      "Top"
+    ],
+    "damage": "AP",
+    "difficulty": 3,
+    "playstyle": [
+      "Proxy",
+      "Macro",
+      "Disrupt"
+    ],
+    "favorite": true,
+    "understanding": 0,
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Singed_0.jpg"
+  },
+  {
+    "id": "briar",
+    "name": "ブライアー",
+    "title": "抑えきれない飢え",
+    "role": [
+      "Jungle"
+    ],
+    "damage": "AD",
+    "difficulty": 2,
+    "playstyle": [
+      "Dive",
+      "Snowball"
+    ],
+    "favorite": true,
+    "understanding": 0,
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Briar_0.jpg"
+  },
+  {
+    "id": "nidalee",
+    "name": "ニダリー",
+    "title": "野生の狩人",
+    "role": [
+      "Jungle"
+    ],
+    "damage": "AP",
+    "difficulty": 5,
+    "playstyle": [
+      "Invade",
+      "Snowball",
+      "Skillshot"
+    ],
+    "favorite": true,
+    "understanding": 0,
+    "image": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Nidalee_0.jpg"
+  }
+]
