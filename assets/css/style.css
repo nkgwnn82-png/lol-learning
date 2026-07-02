@@ -1,21 +1,1025 @@
-lol-learning/
-│
-├── index.html
-├── champions.html
-├── champion.html
-├── glossary.html
-├── progress.html
-│
-├── assets/
-│   ├── css/
-│   │   └── style.css
-│   │
-│   ├── js/
-│   │   ├── app.js
-│   │   ├── champions.js
-│   │   └── champion.js
-│   │
-│   └── images/
-│
-└── data/
-    └── champions.json
+/* ===========================
+   RESET
+=========================== */
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:
+    "Segoe UI",
+    "Hiragino Sans",
+    sans-serif;
+
+    background:#0B1220;
+
+    color:#F8FAFC;
+
+    line-height:1.7;
+
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+button{
+    cursor:pointer;
+    border:none;
+    font:inherit;
+}
+
+/* ===========================
+   COLORS
+=========================== */
+
+:root{
+
+    --bg:#0B1220;
+
+    --card:#111827;
+
+    --card2:#1E293B;
+
+    --gold:#D4AF37;
+
+    --blue:#3B82F6;
+
+    --text:#F8FAFC;
+
+    --gray:#94A3B8;
+
+    --border:#273549;
+
+    --shadow:
+    0 12px 40px rgba(0,0,0,.45);
+
+}
+
+/* ===========================
+   LAYOUT
+=========================== */
+
+.container{
+
+    width:min(1200px,90%);
+    margin:auto;
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    backdrop-filter:blur(14px);
+
+    background:rgba(11,18,32,.88);
+
+    border-bottom:1px solid var(--border);
+
+}
+
+header .container{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    height:82px;
+
+}
+
+.logo{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:var(--gold);
+
+    letter-spacing:1px;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+nav a{
+
+    color:var(--gray);
+
+    transition:.25s;
+
+    position:relative;
+
+    font-weight:600;
+
+}
+
+nav a:hover{
+
+    color:white;
+
+}
+
+nav a.active{
+
+    color:var(--gold);
+
+}
+
+nav a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-8px;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--gold);
+
+    transition:.25s;
+
+}
+
+nav a:hover::after{
+
+    width:100%;
+
+}
+
+/* ===========================
+   HERO
+=========================== */
+
+.hero{
+
+    min-height:85vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+    rgba(8,12,22,.75),
+    rgba(8,12,22,.90)
+    ),
+    url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lillia_0.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+.overlay{
+
+    width:min(850px,92%);
+
+}
+
+.hero h1{
+
+    font-size:72px;
+
+    line-height:1.1;
+
+    margin-bottom:25px;
+
+    font-weight:800;
+
+}
+
+.hero h1 span{
+
+    color:var(--gold);
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    color:#D6D9E0;
+
+    margin-bottom:40px;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.hero-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:18px;
+
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    padding:15px 34px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    transition:.25s;
+
+    font-weight:600;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:var(--shadow);
+
+}
+
+.btn.gold{
+
+    background:var(--gold);
+
+    color:#111;
+
+    border:none;
+
+}
+
+.btn.gold:hover{
+
+    transform:translateY(-4px) scale(1.03);
+
+}
+/* ===========================
+   DASHBOARD
+=========================== */
+
+.dashboard{
+
+    padding:80px 0;
+
+    background:var(--bg);
+
+}
+
+.dashboard .container{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:24px;
+
+}
+
+.dashboard-card{
+
+    background:rgba(30,41,59,.9);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    transition:.25s;
+
+    box-shadow:var(--shadow);
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:var(--gold);
+
+}
+
+.dashboard-card h3{
+
+    font-size:24px;
+
+    margin-bottom:12px;
+
+}
+
+.dashboard-card p{
+
+    color:var(--gray);
+
+    margin-bottom:20px;
+
+}
+
+.dashboard-card span{
+
+    font-size:36px;
+
+    font-weight:700;
+
+    color:var(--gold);
+
+}
+
+.dashboard-card button{
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:14px;
+
+    background:var(--gold);
+
+    color:#111;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.dashboard-card button:hover{
+
+    transform:scale(1.03);
+
+}
+
+/* ===========================
+   FEATURES
+=========================== */
+
+.features{
+
+    padding:100px 0;
+
+}
+
+.features h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:60px;
+
+}
+
+.feature-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:28px;
+
+}
+
+.feature{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:35px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.feature:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--gold);
+
+}
+
+.icon{
+
+    font-size:48px;
+
+    margin-bottom:18px;
+
+}
+
+.feature h3{
+
+    margin-bottom:16px;
+
+    font-size:24px;
+
+}
+
+.feature p{
+
+    color:var(--gray);
+
+}
+
+/* ===========================
+   FAVORITES
+=========================== */
+
+.favorite-section{
+
+    padding:90px 0;
+
+}
+
+.favorite-section h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:50px;
+
+}
+
+.favorite-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:28px;
+
+}
+
+.champion-card{
+
+    background:linear-gradient(
+        180deg,
+        #1E293B,
+        #111827
+    );
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:28px;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.champion-card:hover{
+
+    transform:translateY(-8px);
+
+    border-color:var(--gold);
+
+    box-shadow:var(--shadow);
+
+}
+
+.champion-card h3{
+
+    margin-bottom:12px;
+
+    font-size:24px;
+
+}
+
+.champion-card p{
+
+    color:var(--gray);
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+footer{
+
+    margin-top:80px;
+
+    padding:40px 0;
+
+    border-top:1px solid var(--border);
+
+    background:#09101d;
+
+}
+
+footer .container{
+
+    text-align:center;
+
+}
+
+footer p:first-child{
+
+    font-size:22px;
+
+    color:var(--gold);
+
+    margin-bottom:10px;
+
+}
+
+footer p:last-child{
+
+    color:var(--gray);
+
+}
+
+/* ===========================
+   SCROLLBAR
+=========================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#111827;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:var(--gold);
+
+    border-radius:20px;
+
+}
+
+/* ===========================
+   ANIMATION
+=========================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.hero,
+.dashboard,
+.features,
+.favorite-section{
+
+    animation:fadeUp .8s ease;
+
+}
+/* ===========================
+   GLASS EFFECT
+=========================== */
+
+.glass{
+
+    background:rgba(255,255,255,.04);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:0 12px 40px rgba(0,0,0,.35);
+
+}
+
+/* ===========================
+   SECTION TITLE
+=========================== */
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-title h2{
+
+    font-size:42px;
+
+    color:var(--text);
+
+    margin-bottom:12px;
+
+}
+
+.section-title p{
+
+    color:var(--gray);
+
+    font-size:18px;
+
+}
+
+/* ===========================
+   COMMON CARD
+=========================== */
+
+.card{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:24px;
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    border-color:var(--gold);
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ===========================
+   INPUT
+=========================== */
+
+input,
+select{
+
+    width:100%;
+
+    padding:14px 18px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    background:#162235;
+
+    color:white;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:var(--gold);
+
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.grid-2{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:24px;
+
+}
+
+.grid-3{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:24px;
+
+}
+
+.grid-4{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:24px;
+
+}
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.champion-image{
+
+    width:100%;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+}
+
+.champion-image img{
+
+    transition:.35s;
+
+}
+
+.champion-image:hover img{
+
+    transform:scale(1.05);
+
+}
+
+/* ===========================
+   BADGE
+=========================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:#22324d;
+
+    color:var(--gold);
+
+    font-size:14px;
+
+    margin-right:8px;
+
+    margin-top:8px;
+
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th,
+td{
+
+    padding:14px;
+
+    border-bottom:1px solid var(--border);
+
+    text-align:left;
+
+}
+
+th{
+
+    color:var(--gold);
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width:1100px){
+
+.dashboard .container{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.feature-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+.favorite-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media (max-width:768px){
+
+header .container{
+
+flex-direction:column;
+
+height:auto;
+
+padding:20px 0;
+
+}
+
+nav{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:16px;
+
+margin-top:18px;
+
+}
+
+.hero{
+
+padding:100px 20px;
+
+min-height:70vh;
+
+}
+
+.hero h1{
+
+font-size:46px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+.dashboard .container,
+
+.feature-grid,
+
+.favorite-grid,
+
+.grid-2,
+
+.grid-3,
+
+.grid-4{
+
+grid-template-columns:1fr;
+
+}
+
+.dashboard-card{
+
+padding:24px;
+
+}
+
+.features h2,
+
+.favorite-section h2,
+
+.section-title h2{
+
+font-size:34px;
+
+}
+
+}
+
+@media (max-width:480px){
+
+.logo{
+
+font-size:24px;
+
+}
+
+.hero h1{
+
+font-size:36px;
+
+}
+
+.btn{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.container{
+
+width:94%;
+
+}
+
+}
+
+/* ===========================
+   UTILITIES
+=========================== */
+
+.mt-1{margin-top:10px;}
+.mt-2{margin-top:20px;}
+.mt-3{margin-top:30px;}
+.mt-4{margin-top:40px;}
+
+.mb-1{margin-bottom:10px;}
+.mb-2{margin-bottom:20px;}
+.mb-3{margin-bottom:30px;}
+.mb-4{margin-bottom:40px;}
+
+.text-center{
+    text-align:center;
+}
+
+.hidden{
+    display:none;
+}
+
+.fade-in{
+    animation:fadeUp .5s ease;
+}
