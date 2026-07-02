@@ -1,87 +1,372 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LoL Learning Hub</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="preconnect" href="https://ddragon.leagueoflegends.com">
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">
-    LoL Learning Hub
-</div>
+    <div class="container">
 
-<nav>
+        <div class="logo">
+            LoL Learning Hub
+        </div>
 
-<a href="#">Home</a>
-<a href="#">Champions</a>
-<a href="#">Knowledge</a>
-<a href="#">Progress</a>
+        <nav>
 
-</nav>
+            <a class="active" href="index.html">Home</a>
+
+            <a href="champions.html">Champions</a>
+
+            <a href="glossary.html">Knowledge</a>
+
+            <a href="progress.html">Progress</a>
+
+        </nav>
+
+    </div>
 
 </header>
 
+<main>
 
 <section class="hero">
 
-<h1>League of Legends<br>Learning Hub</h1>
+<div class="overlay">
+
+<h1>
+
+Become Better<br>
+
+<span>One Champion at a Time</span>
+
+</h1>
 
 <p>
-自分だけのLoL学習サイト
+
+あなた専用のLeague of Legends学習サイト
+
 </p>
 
-<button>
-Championを見る
+<div class="hero-buttons">
+
+<a href="champions.html" class="btn gold">
+
+チャンピオンを見る
+
+</a>
+
+<a href="#features" class="btn">
+
+機能を見る
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="dashboard">
+
+<div class="container">
+
+<div class="dashboard-card">
+
+<h3>📖 Champion</h3>
+
+<p>チャンピオン図鑑</p>
+
+<span id="championCount">170+</span>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>📚 Knowledge</h3>
+
+<p>LoL用語集</p>
+
+<span>100+</span>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>📈 Progress</h3>
+
+<p>理解度</p>
+
+<span>0%</span>
+
+</div>
+
+<div class="dashboard-card">
+
+<h3>🎲 Random</h3>
+
+<p>今日のおすすめ</p>
+
+<button id="randomChampion">
+
+ランダム
+
 </button>
 
-</section>
-
-
-<section class="cards">
-
-<div class="card">
-
-<h2>📖 Champion</h2>
-
-<p>
-全チャンピオンを理解する
-</p>
-
 </div>
-
-
-<div class="card">
-
-<h2>📚 Knowledge</h2>
-
-<p>
-Kiting・Spacingなどを学ぶ
-</p>
-
-</div>
-
-
-<div class="card">
-
-<h2>📈 Progress</h2>
-
-<p>
-理解度を管理する
-</p>
 
 </div>
 
 </section>
 
-<script src="js/app.js"></script>
+<section id="features" class="features">
+
+<div class="container">
+
+<h2>
+
+Features
+
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+
+<div class="icon">
+
+🎯
+
+</div>
+
+<h3>
+
+Playstyle
+
+</h3>
+
+<p>
+
+プレイフィールからチャンピオンを探せます。
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="icon">
+
+⭐
+
+</div>
+
+<h3>
+
+Favorite
+
+</h3>
+
+<p>
+
+お気に入り登録ができます。
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="icon">
+
+📒
+
+</div>
+
+<h3>
+
+Notes
+
+</h3>
+
+<p>
+
+自分だけの学習メモを書けます。
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="icon">
+
+🔍
+
+</div>
+
+<h3>
+
+Search
+
+</h3>
+
+<p>
+
+ロール・難易度・プレイスタイルで検索できます。
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="icon">
+
+⚔
+
+</div>
+
+<h3>
+
+Compare
+
+</h3>
+
+<p>
+
+似ているチャンピオンを比較できます。
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<div class="icon">
+
+🏆
+
+</div>
+
+<h3>
+
+Progress
+
+</h3>
+
+<p>
+
+学習状況を可視化します。
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="favorite-section">
+
+<div class="container">
+
+<h2>
+
+Favorite Champions
+
+</h2>
+
+<div class="favorite-grid">
+
+<div class="champion-card">
+
+<h3>🌸 リリア</h3>
+
+<p>Jungle / AP</p>
+
+</div>
+
+<div class="champion-card">
+
+<h3>🔥 ランブル</h3>
+
+<p>Top / AP</p>
+
+</div>
+
+<div class="champion-card">
+
+<h3>🪨 タリヤ</h3>
+
+<p>Mid / Jungle</p>
+
+</div>
+
+<div class="champion-card">
+
+<h3>☣ シンジド</h3>
+
+<p>Top</p>
+
+</div>
+
+<div class="champion-card">
+
+<h3>🩸 ブライアー</h3>
+
+<p>Jungle</p>
+
+</div>
+
+<div class="champion-card">
+
+<h3>🐆 ニダリー</h3>
+
+<p>Jungle</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+<div class="container">
+
+<p>
+
+LoL Learning Hub
+
+</p>
+
+<p>
+
+Made with ChatGPT & GitHub Pages
+
+</p>
+
+</div>
+
+</footer>
+
+<script src="assets/js/app.js"></script>
 
 </body>
-
 </html>
