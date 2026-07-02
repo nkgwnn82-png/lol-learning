@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions | LoL Learning Hub</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="container">
+
+        <div class="logo">
+            LoL Learning Hub
+        </div>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a class="active" href="champions.html">Champions</a>
+
+            <a href="glossary.html">Knowledge</a>
+
+            <a href="progress.html">Progress</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<main class="container">
+
+    <section class="section-title mt-4">
+
+        <h2>Champion Database</h2>
+
+        <p>
+            チャンピオンを検索・絞り込みできます
+        </p>
+
+    </section>
+
+    <section class="card mb-4">
+
+        <div class="grid-4">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="チャンピオン名で検索">
+
+            <select id="roleFilter">
+
+                <option value="">すべてのロール</option>
+
+                <option>Top</option>
+
+                <option>Jungle</option>
+
+                <option>Mid</option>
+
+                <option>ADC</option>
+
+                <option>Support</option>
+
+            </select>
+
+            <select id="damageFilter">
+
+                <option value="">AD / AP</option>
+
+                <option>AD</option>
+
+                <option>AP</option>
+
+            </select>
+
+            <button
+                class="btn gold"
+                id="resetFilter">
+
+                リセット
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <div
+            id="championGrid"
+            class="favorite-grid">
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <div class="container">
+
+        <p>
+            LoL Learning Hub
+        </p>
+
+        <p>
+            Powered by Riot Data Dragon
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="assets/js/champions.js"></script>
+
+</body>
+
+</html>
