@@ -1,0 +1,21 @@
+lol-learning/
+│
+├── index.html
+├── champions.html
+├── champion.html
+├── glossary.html
+├── progress.html
+│
+├── assets/
+│   ├── css/
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── champions.js
+│   │   └── champion.js
+│   │
+│   └── images/
+│
+└── data/
+    └── champions.json
