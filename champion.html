@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Champion | LoL Learning Hub</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="container">
+
+        <div class="logo">
+
+            LoL Learning Hub
+
+        </div>
+
+        <nav>
+
+            <a href="index.html">Home</a>
+
+            <a href="champions.html">Champions</a>
+
+            <a href="glossary.html">Knowledge</a>
+
+            <a href="progress.html">Progress</a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+<main class="container mt-4">
+
+    <section id="championDetail" class="card">
+
+        <div class="grid-2">
+
+            <div>
+
+                <img
+                    id="championImage"
+                    src=""
+                    alt=""
+                    class="champion-image">
+
+            </div>
+
+            <div>
+
+                <h1 id="championName"></h1>
+
+                <p id="championTitle"></p>
+
+                <div class="mt-2">
+
+                    <span id="championRole" class="badge"></span>
+
+                    <span id="championDamage" class="badge"></span>
+
+                    <span id="championDifficulty" class="badge"></span>
+
+                </div>
+
+                <div class="mt-3">
+
+                    <h3>Playstyle</h3>
+
+                    <div id="playstyleContainer"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="card mt-4">
+
+        <h2>スキル</h2>
+
+        <table>
+
+            <tbody>
+
+                <tr>
+
+                    <th>P</th>
+
+                    <td id="skillP"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Q</th>
+
+                    <td id="skillQ"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>W</th>
+
+                    <td id="skillW"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>E</th>
+
+                    <td id="skillE"></td>
+
+                </tr>
+
+                <tr>
+
+                    <th>R</th>
+
+                    <td id="skillR"></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+    <section class="card mt-4">
+
+        <h2>学習メモ</h2>
+
+        <textarea
+            id="memo"
+            rows="8"
+            style="width:100%;padding:15px;background:#162235;color:white;border-radius:12px;border:1px solid #273549;"></textarea>
+
+        <button
+            class="btn gold mt-2"
+            id="saveMemo">
+
+            保存
+
+        </button>
+
+    </section>
+
+    <section class="card mt-4">
+
+        <h2>理解度</h2>
+
+        <input
+            id="understanding"
+
+            type="range"
+
+            min="0"
+
+            max="100"
+
+            value="0">
+
+        <p>
+
+            <span id="understandingValue">
+
+                0
+
+            </span>
+
+            %
+
+        </p>
+
+    </section>
+
+    <section class="card mt-4">
+
+        <button
+            class="btn gold"
+            id="favoriteButton">
+
+            ☆ お気に入り
+
+        </button>
+
+    </section>
+
+</main>
+
+<footer>
+
+    <div class="container">
+
+        <p>
+
+            LoL Learning Hub
+
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="assets/js/champion.js"></script>
+
+</body>
+
+</html>
