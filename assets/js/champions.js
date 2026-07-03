@@ -1,158 +1,160 @@
-// champion.js
-
-const params = new URLSearchParams(window.location.search);
-const championId = params.get("id");
+// champions.js
 
 let champions = [];
 
-async function loadChampion() {
+const grid = document.getElementById("championGrid");
+const searchInput = document.getElementById("searchInput");
+const roleFilter = document.getElementById("roleFilter");
+const damageFilter = document.getElementById("damageFilter");
+const resetButton = document.getElementById("resetFilter");
+
+async function loadChampions() {
     try {
         const response = await fetch("data/champions.json");
         champions = await response.json();
 
-        const champion = champions.find(c => c.id === championId);
-
-        if (!champion) {
-            document.getElementById("championDetail").innerHTML =
-                "<h2>Champion not found.</h2>";
-            return;
-        }
-
-        renderChampion(champion);
+        renderChampions(champions);
 
     } catch (error) {
         console.error(error);
+
+        grid.innerHTML = `
+            <p>チャンピオンデータを読み込めませんでした。</p>
+        `;
     }
 }
 
-function renderChampion(champion) {
+function renderChampions(list) {
 
-    document.title = champion.name + " | LoL Learning Hub";
+    grid.innerHTML = "";
 
-    document.getElementById("championImage").src = champion.image;
-    document.getElementById("championImage").alt = champion.name;
+    if (list.length === 0) {
 
-    document.getElementById("championName").textContent =
-        champion.name;
+        grid.innerHTML = "<p>一致するチャンピオンがありません。</p>";
 
-    document.getElementById("championTitle").textContent =
-        champion.title;
+        return;
+    }
 
-    document.getElementById("championRole").textContent =
-        champion.role.join(" / ");
+    list.forEach(champion => {
 
-    document.getElementById("championDamage").textContent =
-        champion.damage;
+        const card = document.createElement("div");
 
-    document.getElementById("championDifficulty").textContent =
-        "★".repeat(champion.difficulty);
+        card.className = "champion-card fade-in";
 
-    const playstyle = document.getElementById("playstyleContainer");
-    playstyle.innerHTML = "";
+        card.style.cursor = "pointer";
 
-    champion.playstyle.forEach(tag => {
+        card.innerHTML = `
 
-        const badge = document.createElement("span");
+            <div class="champion-image">
 
-        badge.className = "badge";
+                <img
+                    src="${champion.image}"
+                    alt="${champion.name}">
 
-        badge.textContent = tag;
+            </div>
 
-        playstyle.appendChild(badge);
+            <h3>${champion.name}</h3>
+
+            <p>${champion.title}</p>
+
+            <div>
+
+                ${champion.role.map(role =>
+                    `<span class="badge">${role}</span>`
+                ).join("")}
+
+                <span class="badge">
+                    ${champion.damage}
+                </span>
+
+            </div>
+
+            <p class="mt-2">
+
+                難易度
+                ${"★".repeat(champion.difficulty)}
+
+            </p>
+
+        `;
+
+        card.onclick = () => {
+
+            window.location.href =
+                `champion.html?id=${champion.id}`;
+
+        };
+
+        grid.appendChild(card);
 
     });
 
-    if (champion.abilities) {
+}
 
-        document.getElementById("skillP").textContent =
-            champion.abilities.passive.name;
+function filterChampions() {
 
-        document.getElementById("skillQ").textContent =
-            champion.abilities.q.name;
+    const keyword =
+        searchInput.value.toLowerCase();
 
-        document.getElementById("skillW").textContent =
-            champion.abilities.w.name;
+    const role =
+        roleFilter.value;
 
-        document.getElementById("skillE").textContent =
-            champion.abilities.e.name;
+    const damage =
+        damageFilter.value;
 
-        document.getElementById("skillR").textContent =
-            champion.abilities.r.name;
-    }
+    const filtered = champions.filter(champion => {
 
-    loadUserData(champion.id);
+        const matchName =
+            champion.name.toLowerCase().includes(keyword);
+
+        const matchRole =
+            role === "" ||
+            champion.role.includes(role);
+
+        const matchDamage =
+            damage === "" ||
+            champion.damage === damage;
+
+        return (
+            matchName &&
+            matchRole &&
+            matchDamage
+        );
+
+    });
+
+    renderChampions(filtered);
 
 }
 
-function loadUserData(id){
+searchInput.addEventListener(
+    "input",
+    filterChampions
+);
 
-    const memo =
-        localStorage.getItem(id + "_memo");
+roleFilter.addEventListener(
+    "change",
+    filterChampions
+);
 
-    const understanding =
-        localStorage.getItem(id + "_understanding");
+damageFilter.addEventListener(
+    "change",
+    filterChampions
+);
 
-    const favorite =
-        localStorage.getItem(id + "_favorite");
+resetButton.addEventListener(
+    "click",
+    () => {
 
-    if(memo){
+        searchInput.value = "";
 
-        document.getElementById("memo").value = memo;
+        roleFilter.value = "";
 
-    }
+        damageFilter.value = "";
 
-    if(understanding){
-
-        document.getElementById("understanding").value =
-            understanding;
-
-        document.getElementById("understandingValue").textContent =
-            understanding;
-
-    }
-
-    if(favorite==="true"){
-
-        document.getElementById("favoriteButton").textContent =
-            "★ お気に入り済み";
+        renderChampions(champions);
 
     }
+);
 
-}
-
-document.getElementById("saveMemo").addEventListener("click",()=>{
-
-    localStorage.setItem(
-        championId+"_memo",
-        document.getElementById("memo").value
-    );
-
-    alert("保存しました！");
-
-});
-
-document.getElementById("understanding").addEventListener("input",(e)=>{
-
-    document.getElementById("understandingValue").textContent =
-        e.target.value;
-
-    localStorage.setItem(
-        championId+"_understanding",
-        e.target.value
-    );
-
-});
-
-document.getElementById("favoriteButton").addEventListener("click",()=>{
-
-    localStorage.setItem(
-        championId+"_favorite",
-        true
-    );
-
-    document.getElementById("favoriteButton").textContent =
-        "★ お気に入り済み";
-
-});
-
-loadChampion();
+loadChampions();
