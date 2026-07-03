@@ -1,173 +1,158 @@
-// ===============================
-// LoL Learning Hub
-// champions.js
-// ===============================
+// champion.js
+
+const params = new URLSearchParams(window.location.search);
+const championId = params.get("id");
 
 let champions = [];
 
-const grid = document.getElementById("championGrid");
-const searchInput = document.getElementById("searchInput");
-const roleFilter = document.getElementById("roleFilter");
-const damageFilter = document.getElementById("damageFilter");
-const resetButton = document.getElementById("resetFilter");
-
-// ----------------------
-// JSON読み込み
-// ----------------------
-
-async function loadChampions() {
-
+async function loadChampion() {
     try {
-
         const response = await fetch("data/champions.json");
-
         champions = await response.json();
 
-        renderChampions(champions);
+        const champion = champions.find(c => c.id === championId);
+
+        if (!champion) {
+            document.getElementById("championDetail").innerHTML =
+                "<h2>Champion not found.</h2>";
+            return;
+        }
+
+        renderChampion(champion);
 
     } catch (error) {
-
         console.error(error);
+    }
+}
 
-        grid.innerHTML = `
-            <p>チャンピオンデータを読み込めませんでした。</p>
-        `;
+function renderChampion(champion) {
+
+    document.title = champion.name + " | LoL Learning Hub";
+
+    document.getElementById("championImage").src = champion.image;
+    document.getElementById("championImage").alt = champion.name;
+
+    document.getElementById("championName").textContent =
+        champion.name;
+
+    document.getElementById("championTitle").textContent =
+        champion.title;
+
+    document.getElementById("championRole").textContent =
+        champion.role.join(" / ");
+
+    document.getElementById("championDamage").textContent =
+        champion.damage;
+
+    document.getElementById("championDifficulty").textContent =
+        "★".repeat(champion.difficulty);
+
+    const playstyle = document.getElementById("playstyleContainer");
+    playstyle.innerHTML = "";
+
+    champion.playstyle.forEach(tag => {
+
+        const badge = document.createElement("span");
+
+        badge.className = "badge";
+
+        badge.textContent = tag;
+
+        playstyle.appendChild(badge);
+
+    });
+
+    if (champion.abilities) {
+
+        document.getElementById("skillP").textContent =
+            champion.abilities.passive.name;
+
+        document.getElementById("skillQ").textContent =
+            champion.abilities.q.name;
+
+        document.getElementById("skillW").textContent =
+            champion.abilities.w.name;
+
+        document.getElementById("skillE").textContent =
+            champion.abilities.e.name;
+
+        document.getElementById("skillR").textContent =
+            champion.abilities.r.name;
+    }
+
+    loadUserData(champion.id);
+
+}
+
+function loadUserData(id){
+
+    const memo =
+        localStorage.getItem(id + "_memo");
+
+    const understanding =
+        localStorage.getItem(id + "_understanding");
+
+    const favorite =
+        localStorage.getItem(id + "_favorite");
+
+    if(memo){
+
+        document.getElementById("memo").value = memo;
+
+    }
+
+    if(understanding){
+
+        document.getElementById("understanding").value =
+            understanding;
+
+        document.getElementById("understandingValue").textContent =
+            understanding;
+
+    }
+
+    if(favorite==="true"){
+
+        document.getElementById("favoriteButton").textContent =
+            "★ お気に入り済み";
 
     }
 
 }
 
-// ----------------------
-// カード生成
-// ----------------------
+document.getElementById("saveMemo").addEventListener("click",()=>{
 
-function renderChampions(list) {
+    localStorage.setItem(
+        championId+"_memo",
+        document.getElementById("memo").value
+    );
 
-    grid.innerHTML = "";
-
-    if (list.length === 0) {
-
-        grid.innerHTML = "<p>一致するチャンピオンがありません。</p>";
-
-        return;
-
-    }
-
-    list.forEach(champion => {
-
-        const card = document.createElement("div");
-
-        card.className = "champion-card fade-in";
-
-        card.innerHTML = `
-            <div class="champion-image">
-                <img
-                    src="${champion.image}"
-                    alt="${champion.name}">
-            </div>
-
-            <h3 class="mt-2">${champion.name}</h3>
-
-            <p>${champion.title}</p>
-
-            <div class="mt-2">
-
-                ${champion.role.map(role =>
-                    `<span class="badge">${role}</span>`
-                ).join("")}
-
-                <span class="badge">
-                    ${champion.damage}
-                </span>
-
-            </div>
-
-            <div class="mt-2">
-
-                ⭐ 難易度
-                ${champion.difficulty}/5
-
-            </div>
-
-        `;
-
-        grid.appendChild(card);
-
-    });
-
-}
-
-// ----------------------
-// フィルター
-// ----------------------
-
-function filterChampions() {
-
-    const keyword =
-        searchInput.value.toLowerCase();
-
-    const role =
-        roleFilter.value;
-
-    const damage =
-        damageFilter.value;
-
-    const filtered = champions.filter(champion => {
-
-        const matchName =
-            champion.name.toLowerCase().includes(keyword);
-
-        const matchRole =
-            !role ||
-            champion.role.includes(role);
-
-        const matchDamage =
-            !damage ||
-            champion.damage === damage;
-
-        return (
-            matchName &&
-            matchRole &&
-            matchDamage
-        );
-
-    });
-
-    renderChampions(filtered);
-
-}
-
-// ----------------------
-// イベント
-// ----------------------
-
-searchInput.addEventListener(
-    "input",
-    filterChampions
-);
-
-roleFilter.addEventListener(
-    "change",
-    filterChampions
-);
-
-damageFilter.addEventListener(
-    "change",
-    filterChampions
-);
-
-resetButton.addEventListener("click", () => {
-
-    searchInput.value = "";
-
-    roleFilter.value = "";
-
-    damageFilter.value = "";
-
-    renderChampions(champions);
+    alert("保存しました！");
 
 });
 
-// ----------------------
+document.getElementById("understanding").addEventListener("input",(e)=>{
 
-loadChampions();
+    document.getElementById("understandingValue").textContent =
+        e.target.value;
+
+    localStorage.setItem(
+        championId+"_understanding",
+        e.target.value
+    );
+
+});
+
+document.getElementById("favoriteButton").addEventListener("click",()=>{
+
+    localStorage.setItem(
+        championId+"_favorite",
+        true
+    );
+
+    document.getElementById("favoriteButton").textContent =
+        "★ お気に入り済み";
+
+});
+
+loadChampion();
